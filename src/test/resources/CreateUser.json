@@ -1,0 +1,7 @@
+/*
+No need to use this file if JSON objects are already Serialized
+*/
+{
+    "name": "morpheus",
+    "job": "leader"
+}
