@@ -14,50 +14,50 @@ import com.core.KeywordUI;
  *
  */
 
-public class HomePage extends KeywordUI{
+public class HomePage {
 	
 //	KeywordUI keyword = null;
 	
 	public HomePage(){
 //		TestBase base = new TestBase();
-		PageFactory.initElements(driver, this);
+		PageFactory.initElements(KeywordUI.driver, this);
 //		keyword = new KeywordUI();
 	}
 
 	/*** =================ELEMENTS======================== ***/
 
 	@FindBy(css = "input#newBikeList")
-	public static WebElement searchBox_HomePage;
+	public WebElement searchBox_HomePage;
 
 	@FindBy(css = "div.login-box")
-	public static WebElement loginBtn;
+	public WebElement loginBtn;
 
 	@FindBy(css = "li[data-testing-id='global-search-result-list']")
-	public static WebElement suggestionList;
+	public WebElement suggestionList;
 
 	@FindBy(css = "li[data-tabs='discoverBrand']")
-	public static WebElement brandTab;
+	public WebElement brandTab;
 	
 	@FindBy(css = "li[data-tabs='discoverBudget']")
-	public static WebElement budgetTab;
+	public WebElement budgetTab;
 	
 	@FindBy(css = "li[data-tabs='discoverMileage']")
-	public static WebElement displacementTab;
+	public WebElement displacementTab;
 	
 	@FindBy(css = "a[title='Best bikes under 2 lakh']")
-	public static WebElement under2LakhOption;
+	public WebElement under2LakhOption;
 	
 	@FindBy(css = "a[title='Best bikes above 2 lakh']")
-	public static WebElement above2LakhOption;
+	public WebElement above2LakhOption;
 	
 	@FindBy(css = "a[title='Best 500cc bikes']")
-	public static WebElement _250cc_500ccOption;
+	public WebElement _250cc_500ccOption;
 	
-	@FindBy(css = "")
-	public static WebElement _500ccOption;
+	@FindBy(css = "a[title='Best bikes above 500cc ']")
+	public WebElement _500ccOption;
 	
 	@FindBy(css = "img[alt='Royal Enfield bikes']")
-	public static WebElement ROYALENFIELD;
+	public WebElement ROYALENFIELD;
 
 	/*** =================METHODS======================== ***/
 
@@ -113,7 +113,7 @@ public class HomePage extends KeywordUI{
 	public By searchBox_HomePage1 = By.cssSelector("input#newBikeList");
 
 	public void searchBike1(String bikeName) {
-		driver.findElement(searchBox_HomePage1).sendKeys(bikeName);
+		KeywordUI.driver.findElement(searchBox_HomePage1).sendKeys(bikeName);
 	}
 
 
