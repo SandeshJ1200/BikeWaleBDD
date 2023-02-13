@@ -1,13 +1,20 @@
 package com.core;
 
+import java.time.Duration;
+import java.util.List;
+import java.util.NoSuchElementException;
+
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.exceptions.InvalidBrowserNameException;
 
@@ -37,7 +44,6 @@ public class KeywordUI {
 	 * @author Sandesh
 	 */
 	public static void launchBrowser(String browserName) {
-
 		browserName = browserName.toLowerCase();
 
 		if (browserName.equals("edge") || browserName.contains("microsoft")) {
@@ -53,7 +59,7 @@ public class KeywordUI {
 		}
 
 	}
-	
+
 	/**
 	 * Keyword to launch Web-Application/Website
 	 * 
@@ -64,8 +70,40 @@ public class KeywordUI {
 		driver.get(url);
 	}
 
+	/**
+	 * Keyword to close the browser instance
+	 * 
+	 * @author Sandesh
+	 */
 	public static void quitBrowser() {
 		driver.quit();
 	}
 
+	/**
+	 * Keyword to close the currently active browser Tab
+	 * 
+	 * @author Sandesh
+	 */
+	public static void closeBrowserWindow() {
+		driver.close();
+	}
+
+	/**
+	 * Maximizes current browser instance window
+	 * 
+	 * @author Sandesh
+	 */
+	public static void maximizeBrowser() {
+		driver.manage().window().maximize();
+	}
+
+	/**
+	 * Helps to scroll current window in given amounts- X and Y axis in pixels
+	 * @param x axis
+	 * @param y axis
+	 */
+	public static void scrollWindowBy(int x, int y) {
+		driver.executeScript("window.scrollBy(arguments[0],arguments[1])",x,y);
+	}
+	
 }
