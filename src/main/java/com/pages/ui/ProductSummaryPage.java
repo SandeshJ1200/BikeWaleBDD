@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -20,19 +19,19 @@ public class ProductSummaryPage {
 	/*** =================ELEMENTS======================== ***/
 
 	@FindBy(css = "h3.bikeTitle")
-	public static List<WebElement> bikeNames;
+	public List<WebElement> bikeNames;
 
 	@FindBy(css = "span.bwsprite+span.font18")
-	public static List<WebElement> bikePrices;
+	public List<WebElement> bikePrices;
 
 	@FindBy(css = "div.text-xt-light-grey:nth-child(3)")
-	public static List<WebElement> bikeSpecs;
+	public List<WebElement> bikeSpecs;
 
 	@FindBy(css = "div.load-more-btn-container span[style='display: none;']:nth-child(1)")
-	public static List<WebElement> loadMoreButtonElement;
+	public List<WebElement> loadMoreButtonElement;
 
 	@FindBy(css = "a#loadMoreBikes")
-	public static WebElement loadMoreBtn;
+	public WebElement loadMoreBtn;
 
 	/*** =================METHODS======================== ***/
 

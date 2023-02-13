@@ -11,61 +11,61 @@ import io.cucumber.java.en.Then;
 
 public class Browse {
 
-	static HomePage onHomePage = new HomePage();
-	static ProductSummaryPage fromPSP = new ProductSummaryPage();
+	HomePage onHomePage = new HomePage();
+	ProductSummaryPage fromPSP = new ProductSummaryPage();
 
 	@Given("User clicks on Budget Tab under 'Browser Bikes by' section")
-	public static void clickOnBudgetTab() {
+	public void clickOnBudgetTab() {
 		onHomePage.clickOnBudgetTab();
 	}
-	
-	@Given ("User clicks on 'Displacement' Tab under 'Browser Bikes by' section")
-	public static void clickOnDisplacementTab() {
+
+	@Given("User clicks on 'Displacement' Tab under 'Browser Bikes by' section")
+	public void clickOnDisplacementTab() {
 		onHomePage.clickOnDisplacementTab();
 	}
 
 	@And("clicks on 'Under 2 Lakh'")
-	public static void clickOnUnder2Lakh() {
+	public void clickOnUnder2Lakh() {
 		onHomePage.clickOnUnder2Lakh();
 	}
 
 	@And("clicks on 'Above 2 Lakh'")
-	public static void clickOnAbove2Lakh() {
+	public void clickOnAbove2Lakh() {
 		onHomePage.clickOnAbove2Lakh();
 	}
-	
-	@And ("click on '250cc-500cc' segment")
-	public static void clickOn250cc500cc() {
+
+	@And("click on '250cc-500cc' segment")
+	public void clickOn250cc500cc() {
 		onHomePage.clickOn250cc_500cc();
 	}
-	
-	@And ("click on 'Above 500cc' segment")
-	public static void clickOnAbove500cc() {
+
+	@And("click on 'Above 500cc' segment")
+	public void clickOnAbove500cc() {
 		onHomePage.clickOnAbove500cc();
 	}
 
 	@Then("check if all bike prices are Under 2 lakh")
-	public static void verifyBikePricesAreUnder2Lakh() {
+	public void verifyBikePricesAreUnder2Lakh() {
 		fromPSP.clickOnLoadMoreBtn();
 		Assert.assertTrue(fromPSP.checkBikePricesAreUnder(200000));
 	}
 
 	@Then("check if all bike prices are Above 2 lakh")
-	public static void verifyBikePricesAreAbove2Lakh() {
+	public void verifyBikePricesAreAbove2Lakh() {
 		fromPSP.clickOnLoadMoreBtn();
 		Assert.assertTrue(fromPSP.checkBikePricesAreAbove(200000));
 	}
-	
-	@Then ("check if all bike engine sizes are within '250cc-500cc'")
-	public static void checkEnginSizeWithin250cc500cc() {
+
+	@Then("check if all bike engine sizes are within '250cc-500cc'")
+	public void checkEnginSizeWithin250cc500cc() {
 		fromPSP.clickOnLoadMoreBtn();
 		fromPSP.checkEngineSizeIsWithin(250, 500);
 	}
-	
-	@Then ("check if all bike engine sizes are above '500cc'")
-	public static void checkEnginSizeAbove500cc() {
+
+	@Then("check if all bike engine sizes are above '500cc'")
+	public void checkEnginSizeAbove500cc() {
 		fromPSP.clickOnLoadMoreBtn();
-		fromPSP.checkEngineSizeIsWithin(250, 500);
+		fromPSP.checkEngineSizeIsAbove(500);
 	}
 
 }
