@@ -5,8 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.base.Locator;
-import com.base.TestBase;
 import com.base.WaitFor;
 import com.core.KeywordUI;
 
@@ -55,13 +53,16 @@ public class HomePage extends KeywordUI{
 	@FindBy(css = "a[title='Best 500cc bikes']")
 	public static WebElement _250cc_500ccOption;
 	
+	@FindBy(css = "")
+	public static WebElement _500ccOption;
+	
 	@FindBy(css = "img[alt='Royal Enfield bikes']")
 	public static WebElement ROYALENFIELD;
 
 	/*** =================METHODS======================== ***/
 
 	public void clickOnSearchBox_HomePage() {
-		clickOn(searchBox_HomePage);
+		searchBox_HomePage.click();
 	}
 
 	public void searchBike(String bikeName) {
@@ -73,7 +74,8 @@ public class HomePage extends KeywordUI{
 	}
 
 	public void waitForSuggestionList() {
-		WaitFor.elementToBePresent(Locator.suggestionList);
+		By by = By.cssSelector("li[data-testing-id='global-search-result-list']");
+		WaitFor.presenceOfElementLocated(by);
 	}
 
 	public void clickOnBrandTab() {
@@ -90,6 +92,10 @@ public class HomePage extends KeywordUI{
 	
 	public void clickOn250cc_500cc(){
 		_250cc_500ccOption.click();
+	}
+	
+	public void clickOnAbove500cc() {
+		_500ccOption.click();
 	}
 	
 	public void clickOnUnder2Lakh() {
@@ -109,5 +115,7 @@ public class HomePage extends KeywordUI{
 	public void searchBike1(String bikeName) {
 		driver.findElement(searchBox_HomePage1).sendKeys(bikeName);
 	}
+
+
 
 }

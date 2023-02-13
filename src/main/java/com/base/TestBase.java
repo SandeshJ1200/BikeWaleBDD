@@ -12,18 +12,18 @@ public class TestBase extends KeywordUI {
 	 */
 	
 	@Before
-	public void setup() {
-		KeywordUI.launchBrowser("edge");
-		KeywordUI.driver.manage().window().maximize();
-		KeywordUI.launchUrl("https://www.bikewale.com");
+	public static void setup() {
+		launchBrowser("edge");
+		maximizeBrowser();
+		launchUrl("https://www.bikewale.com");
 	}
 	
 	/**
 	 * The Below method will run after every Scenario, because of the @After hook
 	 */
 	@After
-	public void tearDown() {
-		KeywordUI.quitBrowser();
+	public static void tearDown() {
+		quitBrowser();
 	}
 
 	

@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.core.KeywordUI;
 
-public class ProductSummaryPage extends KeywordUI {
-	
+public class ProductSummaryPage {
 
 	public ProductSummaryPage() {
-		PageFactory.initElements(driver, this);
+		PageFactory.initElements(KeywordUI.driver, this);
 	}
 
 	/*** =================ELEMENTS======================== ***/
@@ -24,10 +24,10 @@ public class ProductSummaryPage extends KeywordUI {
 
 	@FindBy(css = "span.bwsprite+span.font18")
 	public static List<WebElement> bikePrices;
-	
+
 	@FindBy(css = "div.text-xt-light-grey:nth-child(3)")
 	public static List<WebElement> bikeSpecs;
-	
+
 	@FindBy(css = "div.load-more-btn-container span[style='display: none;']:nth-child(1)")
 	public static List<WebElement> loadMoreButtonElement;
 
@@ -52,7 +52,7 @@ public class ProductSummaryPage extends KeywordUI {
 
 		return listOfBikeNames;
 	}
-	
+
 	public boolean checkAllBikeNamesHave(String brandName) {
 		List<WebElement> listOfBikeNames = bikeNames;
 
@@ -72,7 +72,6 @@ public class ProductSummaryPage extends KeywordUI {
 		return b;
 	}
 
-
 	public List<String> getAllBikePrices() {
 		List<String> listOfPrices = new ArrayList<>();
 
@@ -87,6 +86,7 @@ public class ProductSummaryPage extends KeywordUI {
 
 	/**
 	 * returns true if bike price is equal or less than a given amount
+	 * 
 	 * @param amount
 	 * @return
 	 */
@@ -97,7 +97,7 @@ public class ProductSummaryPage extends KeywordUI {
 		for (String charPrice : getAllBikePrices()) {
 			int digitPrice = Integer.parseInt(charPrice.replace(",", ""));
 			if (digitPrice <= amount) {
-			}else {
+			} else {
 				b = false;
 				System.out.println("Bike has price more than " + amount);
 			}
@@ -105,9 +105,10 @@ public class ProductSummaryPage extends KeywordUI {
 
 		return b;
 	}
-	
+
 	/**
 	 * returns true if bike price is equal or more than a given amount
+	 * 
 	 * @param amount
 	 * @return
 	 */
@@ -117,8 +118,8 @@ public class ProductSummaryPage extends KeywordUI {
 
 		for (String charPrice : getAllBikePrices()) {
 			int digitPrice = Integer.parseInt(charPrice.replace(",", ""));
-			if (digitPrice >=  amount) {
-			}else {
+			if (digitPrice >= amount) {
+			} else {
 				b = false;
 				System.out.println("Bike has price less than " + amount);
 			}
@@ -127,49 +128,93 @@ public class ProductSummaryPage extends KeywordUI {
 		return b;
 	}
 
+	/**
+	 * Clicks on load more button until the element is present in DOM
+	 * 
+	 * @throws InterruptedException
+	 */
 	public void clickOnLoadMoreBtn() {
-		
+
 		int listsize = loadMoreButtonElement.size();
 
 		while (listsize != 1) {
-			Keyword.scrollWindowBy(0, 1000);
+			KeywordUI.scrollWindowBy(0, 1000);
 			loadMoreBtn.click();
-			listsize = Keyword.getElementsList("div.load-more-btn-container span[style='display: none;']:nth-child(1)").size();
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+			}
+			listsize = loadMoreButtonElement.size();
 		}
 
 	}
-	
+
+	/**
+	 * Checks whether bike displacement size is within a given range
+	 * 
+	 * @param minSize
+	 * @param maxSize
+	 * @return true if displacement size is within a given range 
+	 */
 	public boolean checkEngineSizeIsWithin(int minSize, int maxSize) {
-		
+
 		List<WebElement> genBikeSpecs = bikeSpecs;
-		
+
 		Iterator<WebElement> itr = genBikeSpecs.iterator();
-		
+
 		boolean b = true;
-		
-		while(itr.hasNext()) {
+
+		while (itr.hasNext()) {
 			String bs = itr.next().getText();
 			Double cc = Double.parseDouble(bs.split(" ")[0].replace("cc", ""));
-			if(cc >= minSize && cc <= maxSize) {
-			}else {
+			if (cc >= minSize && cc <= maxSize) {
+			} else {
 				b = false;
 			}
 		}
-		
+
 		return b;
 	}
 	
+	/**
+	 * Checks whether bike displacement size is above a given number
+	 * @param Engine size/Displacement size
+	 * @return true if displacement size is above the given number
+	 */
+	public boolean checkEngineSizeIsAbove(int size) {
+
+		List<WebElement> genBikeSpecs = bikeSpecs;
+
+		Iterator<WebElement> itr = genBikeSpecs.iterator();
+
+		boolean b = true;
+
+		while (itr.hasNext()) {
+			String bs = itr.next().getText();
+			Double cc = Double.parseDouble(bs.split(" ")[0].replace("cc", ""));
+			if (cc >= size) {
+			} else {
+				b = false;
+			}
+		}
+
+		return b;
+	}
+
+	/**
+	 * Gets the number of bikes displayed on the webpage/number of elements
+	 * @return
+	 */
 	public int getNumberOfBikesDisplayed() {
 		int number = 0;
-		
+
 		Iterator<WebElement> itr = bikeNames.iterator();
-		while(itr.hasNext()) {
+		while (itr.hasNext()) {
 			itr.next();
 			number++;
 		}
-		
+
 		return number;
 	}
-
 
 }
