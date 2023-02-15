@@ -1,5 +1,7 @@
 package com.base;
 
+
+
 import com.core.KeywordUI;
 
 import io.cucumber.java.After;
@@ -26,5 +28,13 @@ public class TestBase extends KeywordUI {
 		quitBrowser();
 	}
 
+	/**
+	public void setUp() {
+		String env = System.getProperty("env");
+		System.out.println("Environment: "+env);
+		launchBrowser("edge");
+		launchUrl(FileUtils.getAppUrl(env));
+	}
+	**/
 	
 }
