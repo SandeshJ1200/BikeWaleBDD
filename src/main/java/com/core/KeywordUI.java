@@ -1,9 +1,9 @@
 package com.core;
 
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -36,6 +36,9 @@ public class KeywordUI {
 	 * @author Sandesh
 	 */
 	public static void launchBrowser(String browserName) {
+		EdgeOptions options = new EdgeOptions();
+		options.addArguments("");
+		
 		browserName = browserName.toLowerCase();
 
 		if (browserName.equals("edge") || browserName.contains("microsoft")) {

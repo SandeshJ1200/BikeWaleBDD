@@ -71,7 +71,7 @@ public class Browse {
 		fromPSP = new ProductSummaryPage();
 		
 		fromPSP.clickOnLoadMoreBtn();
-		fromPSP.checkEngineSizeIsWithin(250, 500);
+		Assert.assertTrue(fromPSP.checkEngineSizeIsWithin(250, 500));
 	}
 
 	@Then("check if all bike engine sizes are above '500cc'")
@@ -79,7 +79,7 @@ public class Browse {
 		fromPSP = new ProductSummaryPage();
 		
 		fromPSP.clickOnLoadMoreBtn();
-		fromPSP.checkEngineSizeIsAbove(500);
+		Assert.assertTrue(fromPSP.checkEngineSizeIsAbove(500));
 	}
 
 }
