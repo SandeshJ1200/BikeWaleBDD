@@ -1,5 +1,6 @@
 Feature: This feature file contains scenarios related to the 'Browse Bikes By' product search funtionality
 
+
 	Scenario: To Verify if Displayed Bike Prices are Under Two Lakh if User clicks on 'Under 2 Lakh' in 'Browse Bikes By' section.
     Given User clicks on Budget Tab under 'Browser Bikes by' section
     And clicks on 'Under 2 Lakh'
